@@ -1,5 +1,5 @@
-import { PubSub } from "graphql-subscriptions";
-import Message from "../../models/Message";
+import { PubSub } from 'graphql-subscriptions'
+import Message from '../../models/Message'
 
 const pubsub = new PubSub(); //create a PubSub instance
 /**
@@ -13,7 +13,7 @@ const pubsub = new PubSub(); //create a PubSub instance
 let currentNumber = 0;
 function incrementNumber() {
   currentNumber++;
-  pubsub.publish("NUMBER_INCREMENTED", { numberIncremented: currentNumber });
+  pubsub.publish('NUMBER_INCREMENTED', { numberIncremented: currentNumber });
   setTimeout(incrementNumber, 1000);
 }
 // Start incrementing
@@ -22,7 +22,7 @@ const Query = {
   Query: {
     currentNumber: async (parent, { to, content }, ctx) => {
       setTimeout(incrementNumber, 1000);
-      pubsub.publish("NUMBER_INCREMENTED", {
+      pubsub.publish('NUMBER_INCREMENTED', {
         numberIncremented: currentNumber,
       });
       return 1;
@@ -57,7 +57,7 @@ const sendMessage = async (
     });
 
     // Publica el evento de nuevo mensaje usando pubsub
-    pubsub.publish("NEW_MESSAGE", { newMessage: message });
+    pubsub.publish('NEW_MESSAGE', { newMessage: message });
 
     // Publica el evento de nuevo mensaje en una sala de chat específica
     pubsub.publish(`NEW_CHAT_ROOM_MESSAGE_${codeRoom}`, {
@@ -73,13 +73,13 @@ const sendMessage = async (
 const SubscriptionSubscription = {
   Subscription: {
     numberIncremented: {
-      subscribe: () => pubsub.asyncIterator(["NUMBER_INCREMENTED"]),
+      subscribe: () => pubsub.asyncIterator(['NUMBER_INCREMENTED']),
     },
     newMessage: {
       subscribe: (parent, args, { pubsub }) => {
-        console.log("🚀 ~ args:", args);
+        console.log('🚀 ~ args:', args);
         // Suscríbete a eventos de nuevos mensajes en general
-        return pubsub.asyncIterator("NEW_MESSAGE");
+        return pubsub.asyncIterator('NEW_MESSAGE');
       },
     },
     newChatRoomMessage: {
