@@ -31,8 +31,7 @@ const Query = {
       try {
         const messages = await Message.findAll({
           where: {
-            codeRoom,
-            from: id,
+            codeRoom
           },
         });
 
