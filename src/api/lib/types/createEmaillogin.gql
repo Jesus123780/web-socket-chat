@@ -1,0 +1,18 @@
+
+
+type EmailLoginType {
+    _id: ID
+    uEmail: String
+}
+# EmailLogin Type
+
+# EmailLogin Input
+input IEmailLogin {
+    _id: ID
+    uEmail: String
+    deviceid: String
+}
+# Mutations
+type Mutation {
+  registerEmailLogin(input: IEmailLogin): Response
+}

@@ -1,0 +1,34 @@
+# Types
+type Message {
+    uuid: String
+    content: String
+    from: String
+    to: String
+    aDatCre: String
+}
+type ChatRoom {
+    id: ID!
+    codeRoom: String!
+    users: [User]!
+    messages: [Message]!
+}
+
+# Queries
+type Query {
+    "Consulta todos los mensajes"
+    getMessages(from: String): [Message]
+    currentNumber: Int
+}
+
+# Mutations
+type Mutation {
+    createChatRoom(codeRoom: String!, userIds: [ID!]!): ChatRoom!
+    "Registra un mensaje"
+    sendMessage(codeRoom: String!, from: String!, to: String!, content: String!): Message
+}
+type Subscription {
+    "Notificación de un nuevo mensaje en una sala de chat"
+    newChatRoomMessage(codeRoom: String!): Message!
+    newMessage: Message!
+    numberIncremented: Int
+}

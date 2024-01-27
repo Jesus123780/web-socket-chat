@@ -1,0 +1,128 @@
+# Stores
+
+type Store {
+    idStore: ID
+    cId: ID
+    id: ID
+    dId: ID
+    ctId: ID
+    catStore: ID
+    neighborhoodStore: String
+    Viaprincipal: String
+    storeOwner: String
+    storeName: String
+    emailStore: String
+    storePhone: String
+    socialRaz: String
+    Image: String
+    banner: String
+    documentIdentifier: String
+    uPhoNum: String
+    ULocation: String
+    upLat: String
+    upLon: String
+    uState: String
+    siteWeb: String
+    description: String
+    NitStore: String
+    typeRegiments: String
+    typeContribute: String
+    secVia: String
+    addressStore: String
+    createAt: DateTime
+}
+input IStore {
+    idStore: ID
+    cId: ID
+    id: ID
+    dId: ID
+    ctId: ID
+    catStore: ID
+    neighborhoodStore: String
+    Viaprincipal: String
+    storeOwner: String
+    storeName: String
+    emailStore: String
+    storePhone: String
+    socialRaz: String
+    Image: String
+    banner: String
+    documentIdentifier: String
+    uPhoNum: String
+    ULocation: String
+    upLat: String
+    upLon: String
+    uState: String
+    siteWeb: String
+    description: String
+    NitStore: String
+    typeRegiments: String
+    typeContribute: String
+    secVia: String
+    addressStore: String
+    createAt: DateTime
+}
+
+type StoreOrder {
+  pdpId: ID
+  id: ID
+  idStore: ID
+  pId: ID
+  ppState: String
+  pCodeRef: String
+  pPDate: String
+  pSState: String
+  pPStateP: String
+  payMethodPState: String
+  pPRecoger: Boolean
+  totalProductsPrice: Float
+  unidProducts: Int
+  pDatCre: String
+  pDatMod: String
+}
+
+# type Subscription {
+# }
+
+type StoreOrder {
+  pdpId: ID
+  id: ID
+  idStore: ID
+  pId: ID
+  ppState: String
+  pCodeRef: String
+  pPDate: String
+  pSState: String
+  pPStateP: String
+  payMethodPState: String
+  pPRecoger: Boolean
+  totalProductsPrice: Float
+  unidProducts: Int
+  pDatCre: String
+  pDatMod: String
+}
+
+
+type Query {
+    """
+    Response for find one Store
+    """
+    getStore(id: ID, StoreName: String, idStore: ID): Store
+    pushNotificationOrder(pCodeRef: String, idStore: ID): StoreOrder
+
+}
+type Mutation {
+    """
+    "registra Store data
+    """
+    setALogoStore(logo: Upload, idStore: ID): Response
+}
+
+type Subscription {
+    newStore: Store,
+}
+
+
+type Subscription {
+  newStoreOrder: StoreOrder
+}
