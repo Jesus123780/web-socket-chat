@@ -11,6 +11,7 @@ export default {
     Query: {
         ...deviceResolver.QUERIES,
         ...storeResolver.QUERIES,
+        ...messagesResolver.QUERIES,
     },
     Mutation: {
         ...deviceResolver.MUTATIONS,

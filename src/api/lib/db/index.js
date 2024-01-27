@@ -29,6 +29,8 @@ function connect () {
         dialectOptions: dialectOptions[process.env.DIALECT_DB] || {}
       }
     )
+    // sequelize.sync()
+
   } catch (error) {
     console.log(error)
 

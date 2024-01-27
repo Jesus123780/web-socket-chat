@@ -16,7 +16,7 @@ type ChatRoom {
 # Queries
 type Query {
     "Consulta todos los mensajes"
-    getMessages(from: String): [Message]
+    getMessages(codeRoom: String, id: String): [Message]
     currentNumber: Int
 }
 
