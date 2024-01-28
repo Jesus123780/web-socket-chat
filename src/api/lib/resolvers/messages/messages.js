@@ -57,7 +57,7 @@ const sendMessage = async (
     });
 
     // Publica el evento de nuevo mensaje usando pubsub
-    pubsub.publish('NEW_MESSAGE', { newMessage: message });
+    pubsub.publish(`NEW_MESSAGE_${to}`, { newMessage: message });
 
     // Publica el evento de nuevo mensaje en una sala de chat específica
     pubsub.publish(`NEW_CHAT_ROOM_MESSAGE_${codeRoom}`, {
@@ -76,10 +76,10 @@ const SubscriptionSubscription = {
       subscribe: () => pubsub.asyncIterator(['NUMBER_INCREMENTED']),
     },
     newMessage: {
-      subscribe: (parent, args, { pubsub }) => {
-        console.log('🚀 ~ args:', args);
+      subscribe: (parent, { idStore }, { pubsub }) => {
+        console.log('🚀 ~ args:', idStore);
         // Suscríbete a eventos de nuevos mensajes en general
-        return pubsub.asyncIterator('NEW_MESSAGE');
+        return pubsub.asyncIterator(`NEW_MESSAGE_${idStore}`);
       },
     },
     newChatRoomMessage: {

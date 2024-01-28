@@ -29,6 +29,7 @@ type Mutation {
 type Subscription {
     "Notificación de un nuevo mensaje en una sala de chat"
     newChatRoomMessage(codeRoom: String!): Message!
-    newMessage: Message!
+    newMessage(idStore: String!): Message!
     numberIncremented: Int
+    messageForStore(idStore: ID!): Message
 }
